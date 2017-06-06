@@ -174,6 +174,26 @@ public class DBAPI
         return resultList;
     }
 
+    //checks to see which laptops are currently overdue
+    public ArrayList<String> seeOverdue() throws SQLException
+    {
+        String query = "SELECT LT_Name FROM lt_info WHERE Checked_In=1";
+        System.out.println("Inserting query for seeing which Laptops are overdue");
+        Statement seeStatus = conn.createStatement();
+        ResultSet result = seeStatus.executeQuery(query);
+
+        ArrayList<String> resultList = new ArrayList<String>();
+
+        while(result.next())
+        {
+            System.out.println(result.getString("LT_Name"));
+            resultList.add(result.getString("LT_Name"));
+        }
+
+        return resultList;
+    }
+
+    //checks to see which laptops are currently availble for immediate checkout
     public ArrayList<String> seeCurrentlyAvailable() throws SQLException
     {
         String query = "SELECT LT_Name FROM lt_info WHERE Checked_In=0";
