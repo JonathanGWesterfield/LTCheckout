@@ -155,6 +155,41 @@ public class DBAPI
         return resultList;
     }
 
+    //TODO: finish function for seeing currently checked out laptops
+    public ArrayList<String> seeCurrentlyCheckedOut() throws SQLException
+    {
+        String query = "SELECT LT_Name FROM lt_info WHERE Checked_In=1";
+        System.out.println("Inserting query for seeing what is checked out");
+        Statement seeStatus = conn.createStatement();
+        ResultSet result = seeStatus.executeQuery(query);
+
+        ArrayList<String> resultList = new ArrayList<String>();
+
+        while(result.next())
+        {
+            resultList.add(result.getString("LT_Name"));
+        }
+
+        return resultList;
+    }
+
+    public ArrayList<String> seeCurrentlyAvailable() throws SQLException
+    {
+        String query = "SELECT LT_Name FROM lt_info WHERE Checked_In=0";
+        System.out.println("Inserting query for seeing what is available");
+        Statement seeStatus = conn.createStatement();
+        ResultSet result = seeStatus.executeQuery(query);
+
+        ArrayList<String> resultList = new ArrayList<String>();
+
+        while(result.next())
+        {
+            resultList.add(result.getString("LT_Name"));
+        }
+
+        return resultList;
+    }
+
     //shows the history of a laptop, takes laptop name as arguement
     public ArrayList<String> seeLaptopHistory(String ltName) throws SQLException
     {
