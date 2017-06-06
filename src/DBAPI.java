@@ -155,7 +155,7 @@ public class DBAPI
         return resultList;
     }
 
-    //TODO: finish function for seeing currently checked out laptops
+    // function to see what laptops are currently checked out (unavailable)
     public ArrayList<String> seeCurrentlyCheckedOut() throws SQLException
     {
         String query = "SELECT LT_Name FROM lt_info WHERE Checked_In=1";
@@ -167,6 +167,7 @@ public class DBAPI
 
         while(result.next())
         {
+            System.out.println(result.getString("LT_Name"));
             resultList.add(result.getString("LT_Name"));
         }
 
@@ -184,6 +185,7 @@ public class DBAPI
 
         while(result.next())
         {
+            System.out.println(result.getString("LT_Name"));
             resultList.add(result.getString("LT_Name"));
         }
 
